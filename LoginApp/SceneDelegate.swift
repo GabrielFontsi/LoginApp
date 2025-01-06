@@ -14,14 +14,28 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         
+        // Verifica se a cena pode ser convertida para UIWindowScene, caso contrário, retorna sem fazer nada.
         guard let windowScene = (scene as? UIWindowScene) else { return }
+        
+        // Cria a janela principal associada à cena.
         let window = UIWindow(windowScene: windowScene)
-        let vc = ViewController()
+        
+        // Instancia o ViewController principal.
+        let vc = LoginViewController()
+        
+        // Cria um UINavigationController com o ViewController como tela raiz.
         let navVC = UINavigationController(rootViewController: vc)
+        
+        // Define o UINavigationController como o controlador raiz da janela.
         window.rootViewController = navVC
+        
+        // Torna a janela a principal do aplicativo e a torna visível.
         window.makeKeyAndVisible()
+        
+        // Armazena a janela criada na propriedade da classe para mantê-la em memória.
         self.window = window
     }
+
 
     func sceneDidDisconnect(_ scene: UIScene) {
         // Called as the scene is being released by the system.
