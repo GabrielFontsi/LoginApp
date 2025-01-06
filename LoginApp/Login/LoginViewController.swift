@@ -8,7 +8,7 @@
 import UIKit
 
 class LoginViewController: UIViewController {
-    
+
     private var loginScreen = LoginScreen()
     
     override func loadView() {
@@ -17,8 +17,25 @@ class LoginViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.loginScreen.delegate(delegate: self)
+        self.loginScreen.configTextFieldDelegate(delegate: self)
+    }
+}
+
+extension LoginViewController: LoginScreenProtocol {
+    
+    func actionLoginButton() {
     }
 
-
+    func actionRegisterButton() {
+    }
 }
+
+extension LoginViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+    }
+}
+
+
 

@@ -29,45 +29,40 @@ class LoginScreen: UIView {
         return label
     }()
     
-    
-    
     private lazy var emailTextField: UITextField = {
-        let textField = IconTextField(icon: UIImage(systemName: "person"))
+        let textField = UITextField().createTextField(
+            placeholder: "Digite seu Email:",
+            backgroundColor: .white,
+            textColor: .darkGray,
+            isSecure: false,
+            icon: UIImage(systemName: "person")
+        )
         textField.setCardShadow()
-        textField.translatesAutoresizingMaskIntoConstraints = false
-        textField.autocorrectionType = .no
-        textField.backgroundColor = .white
-        textField.borderStyle = .roundedRect
-        textField.keyboardType = .emailAddress
-        textField.placeholder = "Digite seu Email:"
-        textField.textColor = .darkGray
         return textField
     }()
     
     private lazy var passwordTextField: UITextField = {
-        let textField = IconTextField(icon: UIImage(systemName: "key"))
+        let textField = UITextField().createTextField(
+            placeholder: "Digite sua senha:",
+            backgroundColor: .white,
+            textColor: .darkGray,
+            isSecure: true,
+            icon: UIImage(systemName: "key")
+        )
         textField.setCardShadow()
-        textField.translatesAutoresizingMaskIntoConstraints = false
-        textField.autocorrectionType = .no
-        textField.backgroundColor = .white
-        textField.borderStyle = .roundedRect
-        textField.keyboardType = .default
-        textField.isSecureTextEntry = true
-        textField.placeholder = "Digite sua senha:"
-        textField.textColor = .darkGray
         return textField
     }()
     
+    
     private lazy var loginButton: UIButton = {
-        let button = UIButton()
+        let button = UIButton().createButton(
+            title: "Login",
+            backgroundColor: .systemFill,
+            titleColor: .black,
+            cornerRadius: 7.5,
+            ofsize: 18,
+            uiFonte: .medium)
         button.setShadowButton(button: button)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("Login", for: .normal)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .medium)
-        button.setTitleColor(.black, for: .normal)
-        button.clipsToBounds = true
-        button.layer.cornerRadius = 7.5
-        button.backgroundColor = .systemFill
         button.addTarget(self, action: #selector(self.tappedLoginButton), for: .touchUpInside)
         return button
     }()
@@ -77,11 +72,14 @@ class LoginScreen: UIView {
     }
     
     private lazy var registerButton: UIButton = {
-        let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("Não tem conta ? Cadastre-se", for: .normal)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .light)
-        button.setTitleColor(.black, for: .normal)
+        let button = UIButton().createButton(
+            title: "Não tem conta ? Cadastre-se",
+            backgroundColor: .clear,
+            titleColor: .black,
+            cornerRadius: 7.5,
+            ofsize: 18,
+            uiFonte: .medium)
+        button.setShadowButton(button: button)
         button.addTarget(self, action: #selector(self.tappedRegisterButton), for: .touchUpInside)
         return button
     }()
@@ -96,58 +94,45 @@ class LoginScreen: UIView {
         stackView.axis = .vertical
         stackView.distribution = .fillEqually
         stackView.spacing = 8
-       
+        
         return stackView
     }()
     
+    
+    
     private lazy var loginGoogleButton: UIButton = {
-        let button = UIButton()
+        let button = UIButton().createButton(
+            title: "Sign in with Google",
+            backgroundColor: .black,
+            titleColor: .white,
+            cornerRadius: 7.5,
+            ofsize: 18,
+            uiFonte: .medium,
+            icon: UIImage(named: "GoogleIcon"),
+            iconSize: CGSize(width: 25, height: 25),
+            imageEdgeInsets: UIEdgeInsets(top: 5, left: -10, bottom: 5, right: 0))
         button.setShadowButton(button: button)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        
-        // Ajustando o tamanho da imagem que está no botão
-        if let originalImage = UIImage(named: "GoogleIcon") {
-            let resizedImage = UIGraphicsImageRenderer(size: CGSize(width: 25, height: 25)).image { _ in
-                originalImage.draw(in: CGRect(origin: .zero, size: CGSize(width: 25, height: 25)))
-            }
-            button.setImage(resizedImage, for: .normal)
-        }
-       
-        button.setTitle(" Sing in with Google", for: .normal)
-        button.imageView?.contentMode = .scaleAspectFit
-        button.layer.cornerRadius = 7.5
-        button.backgroundColor = .black
-        button.setTitleColor(.white, for: .normal)
-        button.clipsToBounds = true
-        button.imageEdgeInsets = UIEdgeInsets(top: 5, left: -10, bottom: 5, right: 0)
         button.addTarget(self, action: #selector(self.tappedLoginButton), for: .touchUpInside)
         return button
     }()
     
     private lazy var loginAppleButton: UIButton = {
-        let button = UIButton()
+        let button = UIButton().createButton(
+            title: "Sign in with Apple",
+            backgroundColor: .white,
+            titleColor: .black,
+            cornerRadius: 7.5,
+            ofsize: 18,
+            uiFonte: .medium,
+            icon: UIImage(named: "AppleIcon"),
+            iconSize: CGSize(width: 25, height: 25),
+            imageEdgeInsets: UIEdgeInsets(top: 5, left: -10, bottom: 5, right: 0))
         button.setShadowButton(button: button)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        
-        // Ajustando o tamanho da imagem que está no botão
-        if let originalImage = UIImage(named: "AppleIcon") {
-            let resizedImage = UIGraphicsImageRenderer(size: CGSize(width: 25, height: 25)).image { _ in
-                originalImage.draw(in: CGRect(origin: .zero, size: CGSize(width: 25, height: 25)))
-            }
-            button.setImage(resizedImage, for: .normal)
-        }
-        
-        button.setTitle("  Sing in with Apple", for: .normal)
-        button.layer.cornerRadius = 7.5
-        button.backgroundColor = .white
-        button.setTitleColor(.black, for: .normal)
-        button.clipsToBounds = true
-        button.imageEdgeInsets = UIEdgeInsets(top: 5, left: -10, bottom: 5, right: 0)
         button.addTarget(self, action: #selector(self.tappedLoginButton), for: .touchUpInside)
         return button
     }()
-
     
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.setupBackground()
@@ -170,14 +155,18 @@ class LoginScreen: UIView {
         self.addSubview(self.loginButton)
         self.addSubview(self.loginStackView)
         self.addSubview(self.registerButton)
-        
+    }
+    
+    public func configTextFieldDelegate(delegate: UITextFieldDelegate){
+        self.emailTextField.delegate = delegate
+        self.passwordTextField.delegate = delegate
     }
     
     private func setupConstraints(){
         NSLayoutConstraint.activate([
             self.logoLabel.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 50),
             self.logoLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-           
+            
             self.emailTextField.topAnchor.constraint(equalTo: self.logoLabel.bottomAnchor, constant: 32),
             self.emailTextField.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 20),
             self.emailTextField.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -20),
@@ -205,8 +194,6 @@ class LoginScreen: UIView {
             
             self.loginGoogleButton.heightAnchor.constraint(equalToConstant: 44),
             self.loginAppleButton.heightAnchor.constraint(equalTo: self.loginGoogleButton.heightAnchor)
-            
         ])
     }
-    
 }

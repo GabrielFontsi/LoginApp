@@ -54,4 +54,40 @@ class IconTextField: UITextField {
           rect.origin.x += 10 // Ajuste a posição do ícone conforme necessário
           return rect
       }
+    
+}
+
+extension UITextField {
+    func createTextField(placeholder: String,
+                         backgroundColor: UIColor = .white,
+                         textColor: UIColor = .darkGray,
+                         isSecure: Bool = false,
+                         cornerRadius: CGFloat = 7.5,
+                         borderStyle: UITextField.BorderStyle = .roundedRect,
+                         icon: UIImage? = nil) -> UITextField {
+        self.translatesAutoresizingMaskIntoConstraints = false
+        self.placeholder = placeholder
+        self.backgroundColor = backgroundColor
+        self.textColor = textColor
+        self.isSecureTextEntry = isSecure
+        self.borderStyle = borderStyle
+        self.layer.cornerRadius = cornerRadius
+        self.autocorrectionType = .no
+        
+        if let iconImage = icon {
+            let iconView = UIImageView(image: iconImage)
+            iconView.contentMode = .scaleAspectFit
+            iconView.tintColor = .gray
+            iconView.frame = CGRect(x: 0, y: 0, width: 24, height: 24)
+            
+            let containerView = UIView(frame: CGRect(x: 0, y: 0, width: 34, height: 24))
+            containerView.addSubview(iconView)
+            iconView.center = containerView.center
+            
+            self.leftView = containerView
+            self.leftViewMode = .always
+        }
+        
+        return self
+    }
 }
