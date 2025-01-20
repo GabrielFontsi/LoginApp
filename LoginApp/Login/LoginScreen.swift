@@ -10,6 +10,8 @@ import UIKit
 protocol LoginScreenProtocol:AnyObject {
     func actionLoginButton()
     func actionRegisterButton()
+    func actionLoginApple()
+    func actionLoginGoogle()
 }
 
 class LoginScreen: UIView {
@@ -112,9 +114,13 @@ class LoginScreen: UIView {
             iconSize: CGSize(width: 25, height: 25),
             imageEdgeInsets: UIEdgeInsets(top: 5, left: -10, bottom: 5, right: 0))
         button.setShadowButton(button: button)
-        button.addTarget(self, action: #selector(self.tappedLoginButton), for: .touchUpInside)
+        button.addTarget(self, action: #selector(self.tappedGoogleButton), for: .touchUpInside)
         return button
     }()
+    
+    @objc private func tappedGoogleButton(){
+        self.delegate?.actionLoginGoogle()
+    }
     
     private lazy var loginAppleButton: UIButton = {
         let button = UIButton().createButton(
@@ -128,11 +134,14 @@ class LoginScreen: UIView {
             iconSize: CGSize(width: 25, height: 25),
             imageEdgeInsets: UIEdgeInsets(top: 5, left: -10, bottom: 5, right: 0))
         button.setShadowButton(button: button)
-        button.addTarget(self, action: #selector(self.tappedLoginButton), for: .touchUpInside)
+        button.addTarget(self, action: #selector(self.tappedAppleButton), for: .touchUpInside)
         return button
     }()
     
-
+    @objc private func tappedAppleButton(){
+        self.delegate?.actionLoginApple()
+    }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.setupBackground()

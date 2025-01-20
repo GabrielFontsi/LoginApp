@@ -6,7 +6,10 @@ target 'LoginApp' do
   use_frameworks!
 
   # Pods for LoginApp
+
 pod 'Firebase/Auth'
+pod 'Firebase/Core' 
+pod 'Firebase/Firestore' 
 pod 'GoogleSignIn'
 
 end

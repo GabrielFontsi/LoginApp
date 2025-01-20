@@ -6,31 +6,42 @@
 //
 
 import UIKit
+import Firebase
+import GoogleSignIn
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
+    
+    // Inicializa o Firebase quando o aplicativo é iniciado
+    var signInConfig: GIDConfiguration?
 
-
-
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+    
+    func application(_ application: UIApplication,
+                     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        // Configurar Firebase
+        FirebaseApp.configure()
+        
+        // Configurar Google Sign-In com GIDConfiguration
+        if let clientID = FirebaseApp.app()?.options.clientID {
+            signInConfig = GIDConfiguration(clientID: clientID)
+        } else {
+            print("Erro: Não foi possível obter o clientID do Firebase.")
+        }
         return true
     }
-
-    // MARK: UISceneSession Lifecycle
-
+    
+    // Gerencia o ciclo de vida de sessões de cena (iOS 13+)
     func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
-        // Called when a new scene session is being created.
-        // Use this method to select a configuration to create the new scene with.
         return UISceneConfiguration(name: "Default Configuration", sessionRole: connectingSceneSession.role)
     }
-
+    
     func application(_ application: UIApplication, didDiscardSceneSessions sceneSessions: Set<UISceneSession>) {
-        // Called when the user discards a scene session.
-        // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
-        // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
+        // Libere recursos específicos de cenas descartadas, se necessário.
     }
-
-
+    
+    // Gerencia o retorno de URLs para autenticação do Google
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+        return ((GIDSignIn.sharedInstance.handle(url)) != nil)
+    }
 }
 
