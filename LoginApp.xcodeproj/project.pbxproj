@@ -22,6 +22,7 @@
 		33A64CC82D384B330024DC14 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 33A64CC72D384B330024DC14 /* GoogleService-Info.plist */; };
 		33A64CCA2D3EDD480024DC14 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A64CC92D3EDD480024DC14 /* HomeViewController.swift */; };
 		33A64CCD2D3EDD6E0024DC14 /* HomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A64CCC2D3EDD6E0024DC14 /* HomeScreen.swift */; };
+		33A64CCF2D3EE6670024DC14 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A64CCE2D3EE6670024DC14 /* AuthService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +44,7 @@
 		33A64CC72D384B330024DC14 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		33A64CC92D3EDD480024DC14 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		33A64CCC2D3EDD6E0024DC14 /* HomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreen.swift; sourceTree = "<group>"; };
+		33A64CCE2D3EE6670024DC14 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		C19110FA074ACA8E2FFC2835 /* Pods-LoginApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LoginApp.release.xcconfig"; path = "Target Support Files/Pods-LoginApp/Pods-LoginApp.release.xcconfig"; sourceTree = "<group>"; };
 		C890B06D27A6D4A5C0F6FB13 /* Pods-LoginApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LoginApp.debug.xcconfig"; path = "Target Support Files/Pods-LoginApp/Pods-LoginApp.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -108,6 +110,7 @@
 			children = (
 				332D7AE52D25E4D7002EB4ED /* LoginViewController.swift */,
 				332D7AF62D25EA46002EB4ED /* LoginScreen.swift */,
+				33A64CCE2D3EE6670024DC14 /* AuthService.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -266,6 +269,7 @@
 				33A64CCD2D3EDD6E0024DC14 /* HomeScreen.swift in Sources */,
 				332D7AFD2D25F67A002EB4ED /* UIView + Extension.swift in Sources */,
 				332D7AE42D25E4D7002EB4ED /* SceneDelegate.swift in Sources */,
+				33A64CCF2D3EE6670024DC14 /* AuthService.swift in Sources */,
 				332D7B002D25F67A002EB4ED /* TextField + Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

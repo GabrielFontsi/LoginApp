@@ -17,6 +17,8 @@ class HomeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.view.backgroundColor = .systemGray2
+        self.navigationItem.hidesBackButton = true
     }
 
 

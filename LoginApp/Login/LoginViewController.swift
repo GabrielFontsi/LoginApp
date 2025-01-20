@@ -27,44 +27,21 @@ class LoginViewController: UIViewController {
 
 extension LoginViewController: LoginScreenProtocol {
     func actionLoginGoogle() {
-        guard let clientID = FirebaseApp.app()?.options.clientID else {
-            print("Erro ao obter clientID do Firebase")
-            return
-        }
+        AuthService.shared.signInWithGoogle(presentingVC: self) { [weak self] result in
+                    guard let self = self else { return }
 
-        let config = GIDConfiguration(clientID: clientID)
-        GIDSignIn.sharedInstance.configuration = config
-
-        GIDSignIn.sharedInstance.signIn(withPresenting: self) { [weak self] result, error in
-            guard let self = self else { return }
-
-            if let error = error {
-                print("Erro ao realizar login: \(error.localizedDescription)")
-                return
-            }
-
-            guard let user = result?.user,
-                  let idToken = user.idToken?.tokenString else {
-                print("Erro ao obter usuário ou token")
-                return
-            }
-
-            let credential = GoogleAuthProvider.credential(withIDToken: idToken,
-                                                           accessToken: user.accessToken.tokenString)
-
-            Auth.auth().signIn(with: credential) { authResult, error in
-                if let error = error {
-                    print("Erro ao autenticar com Firebase: \(error.localizedDescription)")
-                    return
-                }
-                print("Usuário autenticado com sucesso: \(authResult?.user.email ?? "Sem e-mail")")
+                    switch result {
+                    case .success(let user):
+                        print("Usuário autenticado com sucesso: \(user.email ?? "Sem e-mail")")
+                        let homeVC = HomeViewController()
+                        self.navigationController?.pushViewController(homeVC, animated: true)
+                    case .failure(let error):
+                        print("Erro ao realizar login com Google: \(error.localizedDescription)")
             }
         }
     }
 
 
-
-    
     func actionLoginApple() {
         let fakeUser = ["name": "John Doe", "email": "john.doe@example.com"]
             print("Login com Apple simulado no ViewController: \(fakeUser)")
